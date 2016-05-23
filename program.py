@@ -1,9 +1,11 @@
 
 def main():
-    # print the header
     print_the_header()
-    # get postcode from user
+
+    code = input('What zipcode do you want the weather for (BR2)? ')
+
     # get html from web
+    print(code)
     # parse the html
     # display for the forecast
     print('hello from main')
