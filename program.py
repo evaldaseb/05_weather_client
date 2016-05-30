@@ -1,3 +1,5 @@
+import requests
+
 
 def main():
     print_the_header()
@@ -20,7 +22,10 @@ def print_the_header():
 
 def get_html_from_web(postcode):
     url = 'https://www.wunderground.com/cgi-bin/findweather/getForecast?query={}'.format(postcode)
-    print(url)
+    # print(url)
+    response = requests.get(url)
+    print(response.status_code)
+
 
 if __name__ == '__main__':
     main()
