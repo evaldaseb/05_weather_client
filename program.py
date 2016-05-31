@@ -1,4 +1,5 @@
 import requests
+import bs4
 
 
 def main():
@@ -6,9 +7,10 @@ def main():
 
     code = input('What zipcode do you want the weather for (BR2+7PD)? ')
 
-    # get html from web
-    get_html_from_web(code)
-    # parse the html
+    html = get_html_from_web(code)
+
+    get_weather_from_html(html)
+
     # display for the forecast
     print('hello from main')
 
@@ -22,9 +24,15 @@ def print_the_header():
 
 def get_html_from_web(postcode):
     url = 'https://www.wunderground.com/cgi-bin/findweather/getForecast?query={}'.format(postcode)
-    # print(url)
     response = requests.get(url)
-    print(response.status_code)
+    # print(response.status_code)
+    # print(response.text[0:250])
+    return response.text
+
+
+def get_weather_from_html(html):
+    soup = bs4.BeautifulSoup(html, 'html.parser')
+    # print(soup)
 
 
 if __name__ == '__main__':
