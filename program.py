@@ -32,8 +32,9 @@ def get_html_from_web(postcode):
 
 def get_weather_from_html(html):
     soup = bs4.BeautifulSoup(html, 'html.parser')
-    # print(soup)
+    loc = soup.find(id='location').find('h1')
 
+    print(loc)
 
 if __name__ == '__main__':
     main()
