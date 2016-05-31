@@ -32,9 +32,12 @@ def get_html_from_web(postcode):
 
 def get_weather_from_html(html):
     soup = bs4.BeautifulSoup(html, 'html.parser')
-    loc = soup.find(id='location').find('h1')
+    loc = soup.find(id='location').find('h1').get_text()
+    condition = soup.find(id='curCond').find(class_='wx-value').get_text()
+    temp = soup.find(id='curTemp').find(class_='wx-value').get_text()
+    scale = soup.find(id='curTemp').find(class_='wx-unit').get_text()
 
-    print(loc)
+    print(condition, temp, scale)
 
 if __name__ == '__main__':
     main()
