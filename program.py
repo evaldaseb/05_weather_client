@@ -12,7 +12,7 @@ def main():
     get_weather_from_html(html)
 
     # display for the forecast
-    print('hello from main')
+    # print('hello from main')
 
 
 def print_the_header():
@@ -37,7 +37,20 @@ def get_weather_from_html(html):
     temp = soup.find(id='curTemp').find(class_='wx-value').get_text()
     scale = soup.find(id='curTemp').find(class_='wx-unit').get_text()
 
-    print(condition, temp, scale)
+    loc = cleanup_text(loc)
+    condition = cleanup_text(condition)
+    temp = cleanup_text(temp)
+    scale = cleanup_text(scale)
+
+    print(condition, temp, scale, loc)
+
+
+def cleanup_text(text: str):
+    if not text:
+        return text
+
+    text = text.strip()
+    return text
 
 if __name__ == '__main__':
     main()
